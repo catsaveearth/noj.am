@@ -1,38 +1,40 @@
 #include <stdio.h>
-#include <cstdio>
-#include <stack>
-using namespace std;
+#include <string.h>
+#include<stack>
 
-char galho[52];
+using namespace std;
 
 int main(void) {
 
+	int time;
+	scanf("%d", &time);
+	while (time--) {
+		stack<int>gal;
 
-	int num;
-	char a;
-	scanf("%d", &num);
-	scanf("%c", &a);
+		char VPS[51];
+		scanf("%s", VPS);
 
-	for (int i = 0; i < num; i++) {
-		stack<char> stack;
-		gets_s(galho);
-		int k = 0;
-		while (galho[k]!=NULL) {
-			if (galho[k] == '(')
-				stack.push(1);
-			else if (galho[k] == ')') {
-				if (stack.empty()) {
-					stack.push(1);
+		int val = strlen(VPS);
+		int check = 0;
+
+		for (int i = 0; i < val; i++) {
+			if (VPS[i] == '(') {
+				gal.push(1);
+			}
+			else {
+				if (gal.empty() == 1) {
+					printf("NO\n");
+					check++;
 					break;
 				}
-				else
-					stack.pop();
+				else {
+					gal.pop();
+				}
 			}
-			k++;
 		}
-		if (stack.empty())
-			printf("YES\n");
-		else
-			printf("NO\n");
+		if (check == 0) {
+			if (gal.empty() == 1)printf("YES\n");
+			else printf("NO\n");
+		}
 	}
 }

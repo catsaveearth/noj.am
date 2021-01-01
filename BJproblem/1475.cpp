@@ -1,51 +1,27 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-
 
 int main(void) {
-	int n;
-	scanf("%d", &n);
+	int dasoms;
+	scanf("%d", &dasoms);
+	int number[10] = { 0, };
+	if (dasoms == 0)number[0]++;
 
-	int num[100000][10] = { 0, };
-	int i = 0;
-	int y = 0;
-
-
-
-	while (n > 0) {
-		if (i < 100000) {
-			num[i][y] = n % 10;
-			n /= 10;
-			i++;
-		}
-
+	while (dasoms > 0) {
+		number[dasoms % 10]++;
+		dasoms /= 10;
 	}
 
+	int sum = number[6] + number[9];
+	if (sum % 2 != 0)sum++;
 
-	int arrnum[10] = { 0 };
-	for (int j = 0; j < i; j++) {
-		arrnum[num[j]]++;
-	}
+	number[6] = sum / 2;
+	int max = 0;
 
-
-
-
-	int max = arrnum[0];
-	int maxnum = 0;
-
-	for (int i = 0; i < 9; i++) {
-		if (arrnum[max] < arrnum[i + 1]) {
-			max = arrnum[i + 1];
-			maxnum = i + 1;
+	for (int i = 0; i < 9; i++)
+	{
+		if (max < number[i]) {
+			max = number[i];
 		}
 	}
-	int result = max;
-
-	if (maxnum == 6 || maxnum == 9) {
-		max = (arrnum[6] + arrnum[9]) / 2;
-	}
-
 	printf("%d", max);
-
 }
