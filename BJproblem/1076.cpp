@@ -18,9 +18,9 @@ int main(void) {
 	string first, second, thrid;
 	int f = 0, s = 0, t = 0;
 
-	scanf("%s", &first);
-	scanf("%s", &second);
-	scanf("%s", &thrid);
+	getline(cin, first);
+	getline(cin, second);
+	getline(cin, thrid);
 
 	for (int i = 0; i < 10; i++) {
 		if (colorvalue[i].first.compare(first) == 0) f = colorvalue[i].second;
@@ -28,9 +28,10 @@ int main(void) {
 		if (colorvalue[i].first.compare(thrid) == 0) t = colorvalue[i].second;
 	}
 
-	printf("%d%d", f, s);
+	long long num = f * 10 + s;
 
 	for (int i = 0; i < t; i++) {
-		printf("0");
+		num *= 10;
 	}
+	printf("%lld", num);
 }
